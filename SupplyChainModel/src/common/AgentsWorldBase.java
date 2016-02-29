@@ -3,12 +3,21 @@ package common;
 public class AgentsWorldBase extends AgentsWorld {
 
 
-    public AgentsWorldBase(double t, double vis, double p0, double phi) {
-        super(t, vis, p0, phi);
-    }
-
     public static final int AGENTS_N = 50;
+//    private static final double[] agents_c = new double[]{
+//            100, 90, 90, 80, 20,
+//            30, 60, 80, 20, 50,
+//            30, 70, 60, 70, 70,
+//            50, 40, 90, 40, 70,
+//            10, 20, 80, 30, 20,
+//            90, 10, 90, 30, 30,
+//            30, 40, 50, 50, 20,
+//            28, 20, 20, 10, 50,
+//            60, 40, 20, 20, 10,
+//            10, 20, 30, 10, 10
+//    };
 
+//     my data
     public static double[] agents_c = new double[]{
             20, 30, 30, 30, 2,
             10, 5, 12, 5, 4,
@@ -21,6 +30,10 @@ public class AgentsWorldBase extends AgentsWorld {
             7, 8, 7, 14, 8,
             15, 17, 19, 20, 7
     };
+
+    public AgentsWorldBase(double t, double vis, double p0, double phi) {
+        super(t, vis, p0, phi);
+    }
 
     @Override
     protected Agent[] initAgents() {
@@ -137,4 +150,87 @@ public class AgentsWorldBase extends AgentsWorld {
         }
     }
 
+//    protected void initRelations(double[][] r) {
+//        double[][] relations = new double[agents_c.length][agents_c.length];
+//        relations[0][5] = 120;
+//        relations[0][6] = 140;
+//        relations[1][7] = 100;
+//        relations[1][8] = 20;
+//        relations[1][9] = 60;
+//        relations[2][10] = 100;
+//        relations[2][11] = 90;
+//        relations[3][12] = 50;
+//        relations[3][14] = 90;
+//        relations[3][15] = 70;
+//        relations[3][17] = 100;
+//        relations[4][19] = 130;
+//        relations[4][21] = 40;
+//        relations[5][22] = 100;
+//        relations[6][22] = 60;
+//        relations[6][23] = 60;
+//        relations[6][8] = 10;
+//        relations[7][8] = 90;
+//        relations[8][23] = 120;
+//        relations[9][8] = 20;
+//        relations[9][24] = 30;
+//        relations[10][12] = 20;
+//        relations[10][13] = 70;
+//        relations[11][13] = 20;
+//        relations[11][25] = 60;
+//        relations[12][16] = 50;
+//        relations[13][25] = 50;
+//        relations[13][26] = 30;
+//        relations[14][16] = 30;
+//        relations[15][16] = 20;
+//        relations[16][28] = 60;
+//        relations[17][18] = 70;
+//        relations[17][20] = 20;
+//        relations[18][32] = 60;
+//        relations[19][20] = 100;
+//        relations[20][32] = 10;
+//        relations[20][34] = 90;
+//        relations[21][20] = 10;
+//        relations[22][23] = 20;
+//        relations[22][24] = 10;
+//        relations[22][36] = 70;
+//        relations[23][24] = 90;
+//        relations[24][38] = 60;
+//        relations[25][24] = 10;
+//        relations[25][27] = 90;
+//        relations[26][27] = 20;
+//        relations[27][40] = 70;
+//        relations[27][42] = 30;
+//        relations[28][29] = 50;
+//        relations[29][31] = 40;
+//        relations[30][31] = 30;
+//        relations[31][44] = 20;
+//        relations[31][46] = 40;
+//        relations[32][30] = 40;
+//        relations[32][33] = 20;
+//        relations[33][48] = 15;
+//        relations[34][33] = 50;
+//        relations[34][35] = 30;
+//        relations[35][48] = 5;
+//        relations[35][49] = 20;
+//        relations[36][37] = 50;
+//        relations[37][39] = 30;
+//        relations[38][39] = 40;
+//        //39
+//        relations[40][41] = 50;
+//        relations[41][43] = 20;
+//        relations[42][43] = 10;
+//        //43
+//        relations[44][45] = 15;
+//        relations[45][47] = 5;
+//        relations[46][47] = 30;
+//        //47
+//        relations[48][49] = 5;
+//        //49
+//
+//        for (int i = 0; i < agents_c.length; i++) {
+//            for (int j = 0; j < agents_c.length; j++) {
+//                r[i][j] = relations[j][i];
+//            }
+//        }
+//    }
 }

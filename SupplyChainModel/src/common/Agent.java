@@ -19,12 +19,13 @@ public class Agent {
     private boolean isBankrupt = false;
     private ArrayList<BankruptEvent> eventsBuffer = new ArrayList<BankruptEvent>();
     private ArrayList<BankruptEvent> currentEvents = new ArrayList<BankruptEvent>();
+    private ArrayList<Double> double_imps = new ArrayList<Double>();
 
     public Agent(double c, double t, double vis, double p0, double phi) {
         this.c = c;
         this.cash = c;
 
-        this.u = 0.3; // u is fixed
+        this.u = 0.8; // u is fixed
         this.y = 1.0; // y is fixed
         this.a = 0.5; // a is fixed
         this.t = t;
@@ -61,6 +62,13 @@ public class Agent {
     }
 
     public void doTurn() {
+
+        // 处理上回合的二次影响
+        for(double v: this.double_imps){
+            this.cash -= v;
+        }
+        this.double_imps.clear();
+
 //        BankruptCal cal = new BankruptCal();
         for (BankruptEvent e : currentEvents) {
             double f;
@@ -75,10 +83,13 @@ public class Agent {
                 int downCount = down.length;
                 for (Agent a : down) {
                     if (Math.random() < (1 / downCount)) {
-                        double value = globalRelations.getValue(this, a);
-                        double force = f * a.getFFromUpstream(value) / t / value;
+//                        double value = globalRelations.getValue(this, a);
+//                        double force = f * a.getFFromUpstream(value) / t / value;
 //                        System.out.println(force);
-                        a.cash -= force;
+//                        a.cash -= force;
+                        double value = f / t;
+                        BankruptEvent be = new BankruptEvent(value, true);
+                        this.informBankrupt(be);
                     }
                 }
             } else {
@@ -89,7 +100,8 @@ public class Agent {
 
             // 二次影响
             if (Math.random() < p) {
-                this.cash -= f * phi;
+//                this.cash -= f * phi;
+                this.double_imps.add(f*phi);
             }
         }
 
@@ -146,7 +158,8 @@ public class Agent {
 //        }
 
     double getFFromUpstream(double value) {
-        Agent[] upstreams = globalRelations.getAllUpstreamAgents(Agent.this);
+//        Agent[] upstreams = globalRelations.getAllUpstreamAgents(Agent.this);
+        Agent[] upstreams = globalRelations.getAliveUpstreamAgents(Agent.this);
         Agent[] downstreams = globalRelations.getAllDownstreamAgents(Agent.this);
         double in = 0.0;
         for (Agent agent : downstreams) {

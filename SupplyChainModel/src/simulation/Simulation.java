@@ -144,7 +144,7 @@ public class Simulation {
 //        exp4();
 //        exp5();
 //        exp6();
-//        exp7();
+        exp7();
 
     }
 

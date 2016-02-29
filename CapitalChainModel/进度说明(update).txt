@@ -1,0 +1,13 @@
+目前完成了一个简单的公司结构破产模拟
+使用矩阵表示公司之间的资金流关系，公司对象实体存储在List中
+在FirmAgent中实现了一个简单的通行函数，在检测到己公司破产之后，通过查询公司关系表来向有资金来往的公司发送消息
+由于具体数据格式未知，目前Model类并没有实现
+
+update 2015-11-30:
+1. 添加FileModel类，实现从以下文件中读取信息
+agentsFile.txt存储公司的信息，包括公司id，公司初始资产
+relationFile.txt存储公司之间的资金流关系，使用id对应的index,[index1][index2],fund资金流数额
+在AgentRelation.java中添加使用FileModel建模的函数，即重载initRelations函数
+2. 设计一个包含50个节点的网络结构
+信息图示见case1.jpg
+信息内容输入agentsFile.txt与relationFile.txt中
